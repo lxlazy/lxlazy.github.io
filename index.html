@@ -7,6 +7,31 @@
   <title>测试</title>
 </head>
 <body>
+
+  <button type="button" onclick="test()">新增随机数据</button>
+
   <script src="https://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+  <script>
+  
+    function test(){
+      var name = parseInt(Math.random()*100000);
+      $.ajax({
+      url: 'https://leancloud.cn/1.1/classes/test',
+      type: 'post',
+      headers: {
+        'X-LC-Id': '5IHjk6vpFF05YSgvAaGvEAaF-gzGzoHsz',
+        'X-LC-Key': 'po8yWIuKPecHiSsqXsr7O4aE',
+        'Content-Type': 'application/json'
+      },
+      dataType: 'json',
+      data: JSON.stringify({
+        name: 'name'+ name
+      }),
+      success: function(data){
+        console.log(data)
+      }
+    })
+    }
+  </script>
 </body>
 </html>

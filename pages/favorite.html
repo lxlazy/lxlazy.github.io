@@ -7,6 +7,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>我的收藏</title>
     <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        tr th{
+			text-align: center;
+		}
+		td.vertical-center{
+			height: 100%;
+			vertical-align: middle !important;
+			text-align: center;
+		}
+    </style>
 </head>
 
 <body>
@@ -18,13 +28,16 @@
     </div>
     
     <div class="container">
+        <table class="table table-hover table-bordered" id="pcTable"></table>
+        
         <h2>基础文档</h2>
-        <p><a href="//developer.mozilla.org/zh-CN/docs/Web/API">MDN web docs</a>：mozilla 支持文档，JS API等</p>
+        <p><a href="//developer.mozilla.org/zh-CN/docs/Web/API">MDN web docs</a>：mozilla Web API 接口</p>
         <p><a href="//es6.ruanyifeng.com/">ECMAScript6文档</a>：建议了解</p>
         <p><a href="//www.w3.org/TR/html/">HTML5 规范</a>：没看过</p>
         <p><a href="//html.spec.whatwg.org/multipage/">HTML标准：</a>特定功能的相关细节</p>
         <p><a href="//www.w3.org/Style/CSS/current-work">CSS3概览</a>：比较少用</p>
         <p><a href="//developer.apple.com/library/content/documentation/AppleApplications/Reference/SafariHTMLRef/Introduction.html">safari</a>：浏览器特性</p>
+        <p><a href="//pan.baidu.com/s/1qYeC0ri">正则表达式</a>：必看</p>
         
         <h2>设计文档</h2>
         <p><a href="//ant.design/index-cn">Ant Design</a>：最适合</p>
@@ -116,6 +129,42 @@
         for (var i = 0; i < arr.length; i++) {
             arr[i].target = '_blank';
         }
+        var pcData = {
+            '教程与代码相关网站': [
+                ['W3Cschool', '//www.w3cschool.cn/', '基础教程，种类繁多，请自行选择'],
+                ['FreeCodeCamp', '//freecodecamp.cn/', '初学者在线学习编码，推荐教程'],
+                ['慕课网', '//www.imooc.com/course/list', '视频教程，教程免费且丰富'],
+                ['CSDN知识库', '//lib.csdn.net/', '知识图谱及文章合集，深度不定，请自行选择'],
+                ['CodePen', '//codepen.io/', '各种代码和特效示例'],
+                ['Stack Overflow', '//stackoverflow.com/', '程序员必知网站，学好英文，或者善用翻译插件'],
+                ['segmentfault', '//segmentfault.com/', '中文版StackOvewrflow'],
+                ['极客学院', '//www.jikexueyuan.com/', '付费视频教程，全面'],
+                ['优达学城', '//cn.udacity.com/', '付费视频教程，进阶、高端'],
+                ['W3school', '//www.w3school.com.cn/', ''],
+                ['W3school', '//www.w3school.com.cn/', ''],
+                ['W3school', '//www.w3school.com.cn/', ''],
+                ['W3school', '//www.w3school.com.cn/', ''],
+                ['W3school', '//www.w3school.com.cn/', ''],
+                ['W3school', '//www.w3school.com.cn/', '']
+            ]
+        }
+        var table = $('#pcTable');
+			for(var key in pcData){
+				var arr = pcData[key];
+				var tr = $('<tr class="info"></tr>');
+				var td_0 = $('<td><h2></h2></td>');
+                td_0.find('h2').text(key);
+				td_0.attr('colspan', 2).addClass('vertical-center');
+				tr.append(td_0);
+				table.append(tr);
+				for(var i = 0; i<arr.length; i++){
+					var tr_ = $('<tr></tr>');
+					var td_1 = $('<td></td>').addClass('vertical-center').html($('<a target="_blank"></a>').text(arr[i][0]).attr('href', arr[i][1]));
+					var td_2 = $('<td></td>').text(arr[i][2]);
+					tr_.append(td_1).append(td_2);
+					table.append(tr_);
+				}
+			}
     </script>
 </body>
 
